@@ -7,7 +7,7 @@ const SecretList = () => {
     const [secrets, setSecrets] = useState({});
 
     const fetchSecrets =  async () => {
-        const res = await axios.get('http://localhost:4000/secrets');
+        const res = await axios.get('http://localhost:4002/secrets');
         setSecrets(res.data);
     };
 
@@ -24,7 +24,7 @@ const SecretList = () => {
             >
                 <div className="card-body">
                     <h3>{secret.secret}</h3>
-                    <CommentList secretId={secret.id} />
+                    <CommentList comments={secret.comments} />
                     <CommentForm secretId={secret.id} />
                 </div>
             </div>
