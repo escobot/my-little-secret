@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SecretForm = () => {
-    const [secret, setSecret] = useState('');
+const CommentForm = ({ secretId }) => {
+    const [content, setContent] = useState('');
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post('http://localhost:4000/secrets', {
-            secret
+        await axios.post(`http://localhost:4001/secrets/${secretId}/comments`, {
+            content
         });
-        setSecret('');
-    }
+        setContent('');
+    };
 
     return (
         <div>
-            <h2>Create a secret</h2>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
-                    <label>Title</label>
-                    <br />
+                    <label>New Comment</label>
                     <input 
-                        value={secret}
-                        onChange={e => setSecret(e.target.value)}
+                        value={content}
+                        onChange={e => setContent(e.target.value)}
                         className="form-control" 
                     />
                 </div>
-                <br />
                 <button className="btn btn-primary">Submit</button>
             </form>
         </div>
     );
 };
 
-export default SecretForm;
+export default CommentForm;
