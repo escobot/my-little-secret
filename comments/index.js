@@ -19,7 +19,7 @@ app.post('/secrets/:id/comments', async (req, res) => {
 
     const comments = commentsBySecretId[req.params.id] || [];
 
-    comments.push({ id : commentId, content });
+    comments.push({ id : commentId, content, status: 'pending' });
 
     commentsBySecretId[req.params.id] = comments;
     
@@ -28,7 +28,8 @@ app.post('/secrets/:id/comments', async (req, res) => {
         data: {
             id: commentId,
             content,
-            secretId: req.params.id
+            secretId: req.params.id,
+            status: 'pending'
         }
     });
 
@@ -36,8 +37,33 @@ app.post('/secrets/:id/comments', async (req, res) => {
 });
 
 
-app.post('/events', (req, res) => {
-    
+app.post('/events', async (req, res) => {
+    const { type, data } = req.body;
+
+    if (type === 'CommentModerated') {
+        const { secretId, id, content, status } = data;
+        const comments = commentsBySecretId[secretId];
+
+        const comment = comments.find(comment => {
+            return comment.id === id;
+        });
+
+        comment.status = status;
+
+        commentsBySecretId[req.params.id] = comments;
+
+        await axios.post('http://localhost:4005/events', {
+            type: 'CommentUpdated',
+            data: {
+                id,
+                secretId,
+                content,
+                status
+            }
+        })
+    }
+
+    res.send({});
 });
 
 

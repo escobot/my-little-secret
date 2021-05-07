@@ -14,16 +14,26 @@ app.get('/secrets', (req, res) => {
 app.post('/events', (req, res) => {
     const { type, data } = req.body;
 
-    console.log(req.body)
     if (type === 'SecretCreated') {
         const { id, secret } = data;
         secrets[id] = {id, secret, comments: []}
     }
 
     if (type === 'CommentCreated') {
-        const { id, content, secretId } = data;
+        const { id, content, secretId, status } = data;
         const secret = secrets[secretId];
-        secret.comments.push({id, content});
+        secret.comments.push({id, content, status});
+    }
+
+    if (type === 'CommentUpdated') {
+        const { id, content, secretId, status } = data;
+        const secret = secrets[secretId];
+        const comment = secrets.comments.find(comment => {
+            return comment.id === id;
+        });
+        console.log(comment)
+        comment.status = status;
+        comment.content = content;
     }
 
     res.send({});

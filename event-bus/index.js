@@ -1,16 +1,20 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
 
 app.post('/events', (req, res) => {
-    const event = req.body;
-    axios.post('http://localhost:4000/events', event);
-    axios.post('http://localhost:4001/events', event);
-    axios.post('http://localhost:4002/events', event);
+    try {
+        const event = req.body;
+        console.log('--EVENT BUS-- event : { type: ' + event.type + ' }, data: { ' + event.data + ' };');
+        axios.post('http://localhost:4000/events', event);
+        axios.post('http://localhost:4001/events', event);
+        axios.post('http://localhost:4002/events', event);
+        axios.post('http://localhost:4003/events', event);
+    } catch (err) {
+        console.log('--EVENT BUS-- error : ' + err);
+    }
     res.send({ status : 'OK' });
 });
 
