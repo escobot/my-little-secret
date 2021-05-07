@@ -50,8 +50,6 @@ app.post('/events', async (req, res) => {
 
         comment.status = status;
 
-        commentsBySecretId[req.params.id] = comments;
-
         await axios.post('http://localhost:4005/events', {
             type: 'CommentUpdated',
             data: {
@@ -60,7 +58,7 @@ app.post('/events', async (req, res) => {
                 content,
                 status
             }
-        })
+        });
     }
 
     res.send({});

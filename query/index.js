@@ -28,10 +28,9 @@ app.post('/events', (req, res) => {
     if (type === 'CommentUpdated') {
         const { id, content, secretId, status } = data;
         const secret = secrets[secretId];
-        const comment = secrets.comments.find(comment => {
+        const comment = secret.comments.find(comment => {
             return comment.id === id;
         });
-        console.log(comment)
         comment.status = status;
         comment.content = content;
     }
