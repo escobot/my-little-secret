@@ -29,10 +29,6 @@ app.post('/secrets', async (req, res) => {
     res.status(201).send(secrets[id]);
 });
 
-app.post('/events', (req, res) => {
-    
-});
-
 app.listen(4000, () => {
     console.log('Secrets service listening on port 4000')
 });

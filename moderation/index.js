@@ -10,9 +10,7 @@ app.post('/events', async (req, res) => {
     const { type, data } = req.body;
 
     if (type == 'CommentCreated') {
-        console.log(data.content);
         const status = profanityFilter.includes(data.content) ? 'rejected' : 'approved';
-        console.log(status);
         await axios.post('http://localhost:4005/events', {
             type: 'CommentModerated',
             data: {

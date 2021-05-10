@@ -12,4 +12,13 @@ body
 {
     "content": string
 }
+
+
+POST /events
+
+body
+{ 
+  type: string,
+  data: { obj } 
+}
 ```

@@ -1,11 +1,8 @@
-## Eventbus service
+## Moderation service
 
 ### API
 
 ```sh
-GET /events
-
-
 POST /events
 
 body
