@@ -19,7 +19,7 @@ app.post('/secrets', async (req, res) => {
 
     secrets[id] = { id, secret };
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
         type: 'SecretCreated',
         data: {
             id, secret
@@ -27,6 +27,11 @@ app.post('/secrets', async (req, res) => {
     });
 
     res.status(201).send(secrets[id]);
+});
+
+app.post('/events', (req,res) => {
+    console.log('Received Event', req.body.type);
+    res.send({});
 });
 
 app.listen(4000, () => {
