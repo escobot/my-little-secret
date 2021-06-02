@@ -14,9 +14,9 @@ app.post('/events', (req, res) => {
 
         console.log('--EVENT BUS-- event : { type: ' + event.type + ' }, data: { ' + event.data + ' };');
         axios.post('http://secrets-clusterip-srv:4000/events', event);
-        // axios.post('http://localhost:4001/events', event);
-        // axios.post('http://localhost:4002/events', event);
-        // axios.post('http://localhost:4003/events', event);
+        axios.post('http://comments-srv:4001/events', event);
+        axios.post('http://query-srv:4002/events', event);
+        axios.post('http://moderation-srv:4003/events', event);
     } catch (err) {
         console.log('--EVENT BUS-- error : ' + err);
     }
