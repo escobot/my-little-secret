@@ -13,7 +13,7 @@ app.get('/secrets', (req, res) => {
     res.send(secrets);
 });
 
-app.post('/secrets', async (req, res) => {
+app.post('/secrets/create', async (req, res) => {
     const id = randomBytes(4).toString('hex');
     const { secret } = req.body;
 
