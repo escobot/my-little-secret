@@ -6,7 +6,7 @@ const CommentForm = ({ secretId }) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post(`http://localhost:4001/secrets/${secretId}/comments`, {
+        await axios.post(`http://secrets.com/secrets/${secretId}/comments`, {
             content
         });
         setContent('');

@@ -6,7 +6,7 @@ const SecretForm = () => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post('http://localhost:4000/secrets', {
+        await axios.post('http://secrets.com/secrets/create', {
             secret
         });
         setSecret('');

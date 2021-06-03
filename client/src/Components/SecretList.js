@@ -7,7 +7,7 @@ const SecretList = () => {
     const [secrets, setSecrets] = useState({});
 
     const fetchSecrets =  async () => {
-        const res = await axios.get('http://localhost:4002/secrets');
+        const res = await axios.get('http://secrets.com/secrets');
         setSecrets(res.data);
     };
 
