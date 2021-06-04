@@ -25,4 +25,4 @@ http://secrets.com
 ```
 
 ## Architecture
-![Architecture diagram](https://user-images.githubusercontent.com/20388583/120805367-bbc17380-c513-11eb-9ff2-430c6bfd45b9.png)
+![Architecture diagram](https://user-images.githubusercontent.com/20388583/120859194-dd415000-c551-11eb-9c1d-428e27467778.png)
