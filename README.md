@@ -23,6 +23,7 @@ Open app in web browser
 ```bash
 http://secrets.com
 ```
+In the browser select the 'Advanced option' and type: 'thisisunsafe'
 
 ## Architecture
 ![Architecture diagram](https://user-images.githubusercontent.com/20388583/120859194-dd415000-c551-11eb-9c1d-428e27467778.png)
